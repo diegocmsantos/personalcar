@@ -1,0 +1,40 @@
+{% extends "insite_base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Acesse" %}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li>{% trans "Acesse" %}</li>
+{% endblock %}
+
+{% block content_component %}
+<!-- login -->
+<section id="login">
+    <header>
+        <h1>{% trans "Acesse" %}</h1>
+        <p class="green-box">{% blocktrans %}Informe seu nome de usuário e senha para entrar no {{ SITE_NAME }}. Mantenha a sua senha em segredo, tome cuidado ao acessar o {{ SITE_NAME }} de computadores públicos.{% endblocktrans %}</p>
+    </header>
+    
+    <section>
+
+        {% include "messages.html" %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <p>
+                <input type="submit" class="button" value="{% trans "Entrar no Futebas" %}" />
+            </p>
+        </form>
+
+        <p><a href="" title="{% trans "Clique para recuperar sua senha" %}">{% trans "Esqueci minha senha" %}</a></p>
+
+        <p>{% trans "Não possui uma conta ainda?" %} <a href="" title="{% trans "Clique e registre-se" %}">{% trans "Registre-se agora mesmo" %}</a>.</p>
+
+        <p class="notice">{% trans "Já se cadastrou e não recebeu sua chave de ativação?" %} <a href="" title="{% trans "Enviar chave de ativação" %}">{% trans "Solicite uma nova chave" %}</a>.</p>
+    </section>
+</section>
+<!-- end login -->
+{% endblock %}

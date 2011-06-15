@@ -1,0 +1,23 @@
+{% extends "insite_base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Você foi desconectado" %}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li><a href="{% url login %}" title="{% trans "Voltar para acesse" %}">{% trans "Acesse" %}</a></li>
+    <li>{% trans "Desconectado" %}</li>
+{% endblock %}
+
+{% block content_component %}
+<!-- logged out -->
+<section id="login">
+    <header>
+        <h1>{% trans "Você foi desconectado" %}</h1>
+        <p class="green-box">{% blocktrans %}Você foi desconectado da sua conta no {{ SITE_NAME }}.{% endblocktrans %}</p>
+    </header>
+
+    <p><a href="{% url login %}" title="{% blocktrans %}Volte a entrar no {{ SITE_NAME }}{% endblocktrans %}">{% trans "Faça login" %}</a> {% blocktrans %}e volte a utilizar o {{ SITE_NAME }}.{% endblocktrans %}</p>
+</section>
+<!-- end logged out -->
+{% endblock %}

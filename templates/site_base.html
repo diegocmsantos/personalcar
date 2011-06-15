@@ -1,0 +1,137 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <title>{% block head_title %}{% endblock %} | {{ SITE_NAME }}</title>
+    <!-- meta -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- end meta -->
+
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico" />
+
+    <!-- css -->
+    {% block css %} 
+        <link href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" rel="stylesheet" media="screen" />
+        <link href="{{ MEDIA_URL }}css/jquery-ui/jquery-ui-1.8.1.css" type="text/css" rel="stylesheet" />
+        <link href="{{ MEDIA_URL }}css/structure-screen.css" type="text/css" rel="stylesheet" media="screen" />
+        <link href="{{ MEDIA_URL }}css/colors-screen.css" type="text/css" rel="stylesheet" media="screen" />
+        <link href="{{ MEDIA_URL }}css/print.css" type="text/css" rel="stylesheet" media="print" />
+    {% endblock %}
+    <!-- end css -->
+
+    <!-- icons by http://icondock.com -->
+</head>
+<body>
+<!-- acessible menu -->
+<nav class="hide">
+    <ul>
+        <li><a href="#content" title="{% trans "Ir para o conteúdo" %}">{% trans "Pular para o conteúdo" %}</a></li>
+        <li><a href="#menu" title="{% trans "Ir para o menu" %}">{% trans "Pular para o menu" %}</a></li>
+    </ul>
+</nav>
+<!-- end acessible menu -->
+
+<!-- wrap -->
+<div id="wrap">
+    <!-- header -->
+    <header id="header">
+        <hgroup>
+            <h1><a href="" title="{% trans "Página inicial" %}">{{ SITE_NAME }}</a></h1>
+            <span class="hide">{% trans "Alpha" %}</span>
+        </hgroup>
+
+        <!-- secondary menu -->
+        {% block secondary_menu_wrap %}
+            <nav id="secondary-menu">
+                <ul>
+                    {% block secondary_menu %}
+                        <li><a href="" title="{% trans "Dúvidas ou sugestões, entre em contato" %}">{% trans "Contato" %}</a></li>
+                        <li><a href="" title="{% blocktrans %}Convide seus amigos para participar do {{ SITE_NAME }}{% endblocktrans %}">{% trans "Indique" %}</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="" title="{% trans "Configure sua conta de usuário" %}">{% trans "Usuário" %}</a></li>
+                            <li><a href="{% url logout %}" title="{% blocktrans %}Clique para sair do {{ SITE_NAME }}{% endblocktrans %}">{% trans "Logout" %}</a></li>
+                        {% else %}
+                            <li><a href="" title="{% blocktrans %}Faça o login no {{ SITE_NAME }}{% endblocktrans %}">{% trans "Login" %}</a></li>
+                        {% endif %}
+                    {% endblock %}
+                </ul>
+            </nav>
+        {% endblock %}
+        <!-- end secondary menu -->
+
+        <!-- main menu -->
+        {% block main_menu_wrap %}
+            {% if request.user.is_authenticated %}
+            <nav id="menu">
+                <ul>
+                {% block main_menu %}
+                    <li>
+                        <a href="" title="{% trans "Meu perfil" %}" {% block menu_profile_selected %}{% endblock %} >{% trans "Perfil" %}</a>
+                    </li>
+                    <li>
+                        <a href="" title="{% blocktrans %}Equipes no {{ SITE_NAME }}{% endblocktrans %}" {% block menu_teams_selected %}{% endblock %} >{% trans "Equipes" %}</a>
+                    </li>
+                    <li>
+                        <a href="" title="{% blocktrans %}Locais no {{ SITE_NAME }}{% endblocktrans %}" {% block menu_places_selected %}{% endblock %} >{% trans "Locais" %}</a>
+                    </li>
+                    <li>
+                        <a href="" title="{% blocktrans %}Partidas no {{ SITE_NAME }}{% endblocktrans %}" {% block menu_games_selected %}{% endblock %} >{% trans "Partidas" %}</a>
+                    </li>                    
+                    <li>
+                        <a href="" title="{% trans "Amigos" %}" {% block menu_friends_selected %}{% endblock %} >{% trans "Amigos" %}</a>
+                    </li>
+                    <li>
+                        <a href="" title="{% trans "Suas mensagens e notificações" %}" {% block menu_messages_selected %}{% endblock %} >{% trans "Mensagens" %}</a>
+                    </li>
+                {% endblock %}
+                </ul>
+            </nav>
+            {% endif %}
+        {% endblock %}
+        <!-- end main menu -->
+    </header>
+    <!-- end header -->
+
+    <!-- section content -->
+    <section id="content" class="{% block content_class %}{% endblock %}">
+    {% block content %}{% endblock %}
+    </section>
+    <!-- end section content -->
+
+    {% block ad_wrap %}{% endblock %}
+
+    {% block social_wrap %}{% endblock %}
+</div>
+<!-- end wrap -->
+
+<!-- footer -->
+<footer id="footer" class="clear">
+    <div>
+        <!-- nav footer -->
+        <nav>
+            <ul>
+                <li><a href="/about-us/" title="{% blocktrans %}Conheça os responsáveis pelo {{ SITE_NAME }}{% endblocktrans %}">{% trans "Sobre Nós" %}</a></li>
+                <li><a href="/faq/" title="{% trans "Mais pessoas têm dúvidas, leia as soluções" %}">{% trans "Dúvidas Frequentes" %}</a></li>
+                <li><a href="/privacy-policy/" title="{% trans "Está inseguro quanto aos seus dados pessoais? Leia nossa política de privacidade" %}">{% trans "Política de Privacidade" %}</a></li>
+                <li><a href="/use-terms/" title="{% trans "Leia o que você pode ou não pode fazer" %}">{% trans "Termos de Uso" %}</a></li>
+                <li><a href="#header" title="{% trans "Ir para o topo" %}">Topo</a></li>
+            </ul>
+        </nav>
+        <!-- end nav footer -->
+
+        <p id="copy">{% trans "&copy; 2010 Futebas" %}</p>
+    </div>
+</footer>
+<!-- end footer -->
+
+<!-- javascript -->
+{% block javascript %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.1.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.futebas-common.js"></script>
+{% endblock %}
+<!-- end javascript -->
+</body>
+</html>

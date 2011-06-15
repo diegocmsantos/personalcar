@@ -1,0 +1,34 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+
+{% block content %}
+    {% block breadcrumb_wrap %}
+        <!-- breadcrumb -->
+        <nav id="breadcrumb">
+            <ul>
+                {% block breadcrumb %}
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{{ LOGIN_REDIRECT_URL }}" title="{% trans "Meu perfil" %}">{% trans "Meu Perfil" %}</a></li>
+                    {% else %}
+                        <li><a href="" title="{% trans "Voltar para página inicial" %}">{% trans "Principal" %}</a></li>
+                    {% endif %}
+                {% endblock %}
+                
+                <div class="clear"><!-- non-semantic clear --></div>
+            </ul>
+        </nav>
+        <!-- end breadcrumb -->
+    {% endblock %}
+    
+    {% block content_component %}{% endblock %}
+{% endblock %}
+
+{% block ad_wrap %}
+<!-- col-ad -->
+<aside id="col-ad">
+    <a href="" title="{% trans "Publicidade" %}"><img src="{{ MEDIA_URL }}img/col-ad-example.png" alt="{% trans "Publicidade" %}" /></a>
+    <br />
+    <small>{% trans "Publicidade" %}</small>
+</aside>
+<!-- end col-ad -->
+{% endblock %}

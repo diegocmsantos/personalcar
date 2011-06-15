@@ -1,0 +1,26 @@
+{% extends "insite_base.html" %}
+{% load i18n notificate_extras %}
+
+{% block content_component %}
+
+{% block notificate_section %}
+    {% notifications_inbox request.user %}
+{% endblock %}
+<header>
+    <h1>{% block content_title %}{% endblock %}</h1>
+</header>
+
+<!-- content section -->
+<div id="content-section">
+    {% include "messages.html" %}
+
+    {% block content_section %}{% endblock %}
+</div>
+<!-- end content section -->
+
+<!-- content aside -->
+<aside id="content-aside">
+    {% block content_aside %}{% endblock %}
+</aside>
+<!-- end content aside -->
+{% endblock %}

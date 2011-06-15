@@ -1,0 +1,26 @@
+{% extends "insite_base.html" %}
+{% load i18n %}
+
+{% block head_title %}{{ flatpage.title }}{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    <li>{{ flatpage.title }}</li>
+{% endblock %}
+
+{% block content_class %}full{% endblock %}
+
+{% block content_component %}
+<article>
+    <header>
+        <h1>{{ flatpage.title }}</h1>
+    </header>
+
+    <section>
+        {{ flatpage.content|safe }}
+    </section>
+
+</article>
+{% endblock %}
+
+{% block ad_wrap %}{% endblock %}
