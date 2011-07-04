@@ -48,8 +48,9 @@
 						$('tr.first').after(
 							"<tr id='" + val.pk + "'>" +
 								"<td style='width: 10%;'>" + val.fields.no_service + "</td>" +
-								"<td style='width: 70%;'>" + val.fields.description + "</td>" +
-								"<td style='width: 10%;'><input type='text' id='value" + val.pk + "' value='" + val.fields.price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
+								"<td style='width: 60%;'>" + val.fields.description + "</td>" +
+								"<td style='width: 10%;'><input type='text' id='quant" + val.fields.no_service + "' value='1' size='8'/ onblur='blur_valor(" + val.pk + ");'></td>" +
+								"<td style='width: 10%;'><input type='text' id='value" + val.pk + "' name='" + val.fields.no_service + "' value='" + val.fields.price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
 								"<td style='width: 10%;' id='remove_" + val.pk + "'><a class='action4' href='#' onclick='remover(" + val.pk + ");' >&nbsp&nbsp&nbsp&nbsp</a></td>" +
 							"</tr>");
 						pk = val.pk;
@@ -79,8 +80,11 @@
 			var total = 0;
 			if (total_items > 0) {
 				var trs = $('input[id^="value"]');
+				var quants = $('input[id^="quant"]');
 				$.each(trs, function(key, val) {
-					total = total + Number(val.value);
+					var quant_key = val.name;
+					//alert(Number(val.value) + ', ' + parseInt($('#quant' + quant_key).val()));
+					total = (total + Number(val.value)) * parseInt($('#quant' + quant_key).val());
 				});
 				result_field.val((total - (total * (desconto / 100))).toFixed(2));
 			}
@@ -116,122 +120,121 @@
 {% endblock %}
 
 {% block content %}
-                        <div class="title_wrapper">
-							<h2>{% trans "Adicionar Ordem de Servico" %}</h2>
+	<div class="title_wrapper">
+		<h2>{% trans "Adicionar Ordem de Servico" %}</h2>
+		
+		<span class="title_wrapper_left"></span>
+		<span class="title_wrapper_right"></span>
+	</div>
+	<!--[if !IE]>end title wrapper<![endif]-->
+	<!--[if !IE]>start section content<![endif]-->
+	<div class="section_content">
+		<!--[if !IE]>start section content top<![endif]-->
+		<div class="sct">
+			<div class="sct_left">
+				<div class="sct_right">
+					<div class="sct_left">
+						<div class="sct_right">
 							
-							<span class="title_wrapper_left"></span>
-							<span class="title_wrapper_right"></span>
-						</div>
-						<!--[if !IE]>end title wrapper<![endif]-->
-						<!--[if !IE]>start section content<![endif]-->
-						<div class="section_content">
-							<!--[if !IE]>start section content top<![endif]-->
-							<div class="sct">
-								<div class="sct_left">
-									<div class="sct_right">
-										<div class="sct_left">
-											<div class="sct_right">
-                                                
-                                                
-                                                
-												<!--[if !IE]>start forms<![endif]-->
-												<form action="." method="post" class="search_form general_form">
-                                                    {% csrf_token %}
-													<input type="hidden" id="id_table" name="table_values" />
-													<!--[if !IE]>start fieldset<![endif]-->
-													<fieldset>
-														<!--[if !IE]>start forms<![endif]-->
-														<div class="forms">
-														
-														<!--[if !IE]>start row<![endif]-->
-                                                        {% for field in form %}
-														<div class="row">
-															{% if field.label_tag != '<label for="id_service_id">Service id</label>' %}
-																{{ field.label_tag }}
-																<div class="inputs">
-																	<span class="input_wrapper">{{ field }}</span>
-																	{% if field.errors %}
-																		<span class="system negative">{{ field.errors }}</span>
-																	{% endif %}
-																</div>
-															{% else %}
-																{{ field }}
-															{% endif %}
-														</div>
-														{% endfor %}
-													
-														<span class="button send_form_btn"><span><span>{% trans "Incluir" %}</span></span><input id="id_button_incluir" type="button" /></span>
-														<!--[if !IE]>end row<![endif]-->
-														
-														<br />
-														<br />
-														<fieldset>
-															<!--[if !IE]>start table_wrapper<![endif]-->
-															<div class="table_wrapper">
-																<div class="table_wrapper_inner">
-																	<table cellpadding="0" cellspacing="0" width="100%">
-																		<tbody>
-																			<tr>
-																				<th>{% trans "Número Serviço" %}</th>
-																				<th>{% trans "Descrição" %}</a></th>
-																				<th>{% trans "Preço" %}</a></th>
-																				<th>{% trans "Remover" %}</a></th>
-																			</tr>
-																			<tr class="first">
-																				
-																			</tr>
-																		</tbody>
-																	</table>
-																</div>
-															</div>
-															<!--[if !IE]>end table_wrapper<![endif]-->
+							<!--[if !IE]>start forms<![endif]-->
+							<form action="." method="post" class="search_form general_form">
+								{% csrf_token %}
+								<input type="hidden" id="id_table" name="table_values" />
+								<!--[if !IE]>start fieldset<![endif]-->
+								<fieldset>
+									<!--[if !IE]>start forms<![endif]-->
+									<div class="forms">
+									
+									<!--[if !IE]>start row<![endif]-->
+									{% for field in form %}
+									<div class="row">
+										{% if field.label_tag != '<label for="id_service_id">Service id</label>' %}
+											{{ field.label_tag }}
+											<div class="inputs">
+												<span class="input_wrapper">{{ field }}</span>
+												{% if field.errors %}
+													<span class="system negative">{{ field.errors }}</span>
+												{% endif %}
+											</div>
+										{% else %}
+											{{ field }}
+										{% endif %}
+									</div>
+									{% endfor %}
+								
+									<span class="button send_form_btn"><span><span>{% trans "Incluir" %}</span></span><input id="id_button_incluir" type="button" /></span>
+									<!--[if !IE]>end row<![endif]-->
+									
+									<br />
+									<br />
+									<fieldset>
+										<!--[if !IE]>start table_wrapper<![endif]-->
+										<div class="table_wrapper">
+											<div class="table_wrapper_inner">
+												<table cellpadding="0" cellspacing="0" width="100%">
+													<tbody>
+														<tr>
+															<th>{% trans "Número Serviço" %}</th>
+															<th>{% trans "Descrição" %}</a></th>
+															<th>{% trans "Quantidade" %}</a></th>
+															<th>{% trans "Preço" %}</a></th>
+															<th>{% trans "Remover" %}</a></th>
+														</tr>
+														<tr class="first">
 															
-															<!--[if !IE]>start table menu<![endif]-->
-															<div class="table_menu">
-																
-															</div>
-															<!--[if !IE]>end table menu<![endif]-->
-														</fieldset>
-														
-														<!--[if !IE]>start table menu<![endif]-->
-														<div class="table_menu">
-															<ul class="right">
-																<li><span><span>{% trans "Desconto (%): " %}</span></span><input type="text" id="id_desconto" size='8' /></li>
-																<li><span><span>{% trans "Total: " %}</span></span><input type="text" id="id_result" size='8' /></li>
-															</ul>
-														</div>
-														<!--[if !IE]>end table menu<![endif]-->
-														
-														<!--[if !IE]>start row<![endif]-->
-														<div class="row">
-															<div class="buttons">
-																<ul>
-																	<li><span class="button send_form_btn"><span><span>{% trans "Salvar" %}</span></span><input name="" type="submit" /></span></li>
-																	<li><span class="button cancel_btn"><span><span>{% trans "Cancelar" %}</span></span><input name="" type="reset" /></span></li>
-																</ul>
-															</div>
-														</div>
-														<!--[if !IE]>end row<![endif]-->
-														
-														</div>
-														<!--[if !IE]>end forms<![endif]-->
-														
-													</fieldset>
-													<!--[if !IE]>end fieldset<![endif]-->
-													
-												</form>
-												<!--[if !IE]>end forms<![endif]-->	
-												
+														</tr>
+													</tbody>
+												</table>
 											</div>
 										</div>
+										<!--[if !IE]>end table_wrapper<![endif]-->
+										
+										<!--[if !IE]>start table menu<![endif]-->
+										<div class="table_menu">
+											
+										</div>
+										<!--[if !IE]>end table menu<![endif]-->
+									</fieldset>
+									
+									<!--[if !IE]>start table menu<![endif]-->
+									<div class="table_menu">
+										<ul class="right">
+											<li><span><span>{% trans "Desconto (%): " %}</span></span><input type="text" id="id_desconto" size='8' /></li>
+											<li><span><span>{% trans "Total: " %}</span></span><input type="text" id="id_result" size='8' /></li>
+										</ul>
 									</div>
-								</div>
-							</div>
-							<!--[if !IE]>end section content top<![endif]-->
-							<!--[if !IE]>start section content bottom<![endif]-->
-							<span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
-							<!--[if !IE]>end section content bottom<![endif]-->
+									<!--[if !IE]>end table menu<![endif]-->
+									
+									<!--[if !IE]>start row<![endif]-->
+									<div class="row">
+										<div class="buttons">
+											<ul>
+												<li><span class="button send_form_btn"><span><span>{% trans "Salvar" %}</span></span><input name="" type="submit" /></span></li>
+												<li><span class="button cancel_btn"><span><span>{% trans "Cancelar" %}</span></span><input name="" type="reset" /></span></li>
+											</ul>
+										</div>
+									</div>
+									<!--[if !IE]>end row<![endif]-->
+									
+									</div>
+									<!--[if !IE]>end forms<![endif]-->
+									
+								</fieldset>
+								<!--[if !IE]>end fieldset<![endif]-->
+								
+							</form>
+							<!--[if !IE]>end forms<![endif]-->	
 							
 						</div>
-						<!--[if !IE]>end section content<![endif]-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--[if !IE]>end section content top<![endif]-->
+		<!--[if !IE]>start section content bottom<![endif]-->
+		<span class="scb"><span class="scb_left"></span><span class="scb_right"></span></span>
+		<!--[if !IE]>end section content bottom<![endif]-->
+		
+	</div>
+	<!--[if !IE]>end section content<![endif]-->
 {% endblock %}

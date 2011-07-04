@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _, gettext as __
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
+from uni_form import helpers
+
 from models import *
 
 class AddClientForm(forms.Form):
@@ -27,3 +29,23 @@ class AddServiceForm(forms.ModelForm):
 
     class Meta:
         model = Service
+        
+    @property
+    def helper(self):
+        """ We call this as a method/property so we don't make the form helper a singleton. """
+
+        # instantiate the form helper object
+        helper = helpers.FormHelper()
+
+        # add in some input controls (a.k.a. buttons)
+        submit = helpers.Submit('submit','Submit')
+        helper.add_input(submit)
+        reset = helpers.Reset('reset','Reset')
+        helper.add_input(reset)
+
+        # define the form action
+        helper.form_action = reverse('awesome-form-action')
+        helper.form_method = 'POST'
+        # helper.form_class = 'awesomeness'
+        # helper.form_id = 'form-100'
+        return helper

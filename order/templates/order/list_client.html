@@ -28,25 +28,21 @@
 													<table cellpadding="0" cellspacing="0" width="100%">
 														<tbody><tr>
 															<th>Nome</th>
-															<th><a href="#" class="asc">Email</a></th>
-															<th><a href="#" class="desc">Address</a></th>
-															<th><a href="#">Phone</a></th>
-															<th style="width: 96px;">Actions</th>
+															<th>Email</th>
+															<th>Rua</th>
+															<th>Telefone</th>
+															<th style="width: 96px;">Ordem de serviço</th>
 														</tr>
                                                         {% for client in clients %}
                                                             <tr class="first">
                                                                 <td>{{ client.name }}</td>
-                                                                <td><span class="approved">{{ client.email }}</span></td>
+                                                                <td>{{ client.email }}</span></td>
                                                                 <td>{{ client.address }}</td>
                                                                 <td>{{ client.phone }}</td>
                                                                 <td style="width: 96px;">
                                                                     <div class="actions">
                                                                         <ul>
-                                                                            <li><a class="action1" href="{% url order.views.add_order client.id %}">1</a></li>
-                                                                            <li><a class="action2" href="#">2</a></li>
-                                                                            <li><a class="action3" href="#">3</a></li>
-                                                                            <li><a class="action4" href="#">4</a></li>
-                                                                            <li><input class="radio" name="" type="checkbox" value="" /></li>
+                                                                            <li><a class="action2" href="{% url order.views.add_order client.id %}">1</a></li>
                                                                         </ul>
                                                                     </div>
                                                                 </td>
@@ -62,11 +58,6 @@
 												<div class="table_menu">
 													<ul class="left">
 														<li><a href="{% url order.views.add_client %}" class="button add_new"><span><span>{% trans "Adicionar Novo Cliente" %}</span></span></a></li>
-													</ul>
-													<ul class="right">
-														<li><a href="#" class="button check_all"><span><span>CHECK ALL</span></span></a></li>
-														<li><a href="#" class="button uncheck_all"><span><span>UNCHECK ALL</span></span></a></li>
-														<li><span class="button approve"><span><span>APPROVE</span></span></span></li>
 													</ul>
 												</div>
 												<!--[if !IE]>end table menu<![endif]-->

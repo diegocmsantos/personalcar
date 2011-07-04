@@ -9,6 +9,7 @@ class Order(models.Model):
     no_order = models.IntegerField(_('Número Ordem'))
     client = models.ForeignKey('Client', related_name='Cliente')
     service = models.ForeignKey('Service', related_name='Ordem de Servico')
+    quant = models.IntegerField(_('Quantidade'))
     discount = models.IntegerField(_('Desconto'), blank=True, null=True)
     date = models.DateField(_('Data de Entrada'), auto_now_add=True)
     

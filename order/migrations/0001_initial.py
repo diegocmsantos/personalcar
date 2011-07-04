@@ -14,6 +14,7 @@ class Migration(SchemaMigration):
             ('no_order', self.gf('django.db.models.fields.IntegerField')()),
             ('client', self.gf('django.db.models.fields.related.ForeignKey')(related_name='Cliente', to=orm['order.Client'])),
             ('service', self.gf('django.db.models.fields.related.ForeignKey')(related_name='Ordem de Servico', to=orm['order.Service'])),
+            ('quant', self.gf('django.db.models.fields.IntegerField')()),
             ('discount', self.gf('django.db.models.fields.IntegerField')(null=True, blank=True)),
             ('date', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
         ))
@@ -42,7 +43,7 @@ class Migration(SchemaMigration):
         db.create_table('order_address', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('street', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('complement', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('complement', self.gf('django.db.models.fields.CharField')(max_length=100, blank=True)),
             ('neighborhood', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('zip', self.gf('django.db.models.fields.CharField')(max_length=10)),
         ))
@@ -77,7 +78,7 @@ class Migration(SchemaMigration):
     models = {
         'order.address': {
             'Meta': {'object_name': 'Address'},
-            'complement': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'complement': ('django.db.models.fields.CharField', [], {'max_length': '100', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'neighborhood': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'street': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
@@ -98,6 +99,7 @@ class Migration(SchemaMigration):
             'discount': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'no_order': ('django.db.models.fields.IntegerField', [], {}),
+            'quant': ('django.db.models.fields.IntegerField', [], {}),
             'service': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'Ordem de Servico'", 'to': "orm['order.Service']"})
         },
         'order.phone': {

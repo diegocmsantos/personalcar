@@ -129,13 +129,14 @@ INSTALLED_APPS = (
     
     # project
     'order',
+    'uni_form',
     'south',
 )
 
 # auth settings
 LOGIN_REDIRECT_URL = '/login/'
 LOGIN_URL = '/login/'
-LOGOUT_URL = '/logout/'
+LOGOUT_URL = '/login/'
 
 SITE_NAME = 'PersonalCar'
 
