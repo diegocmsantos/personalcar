@@ -80,25 +80,25 @@ def list_client(request):
     
 @login_required
 def add_order(request, client_id='0'):
-    print 'CLIENT_ID: %s' % (client_id,)
     context = {}
     if request.POST:
         form = AddOrderForm(request.POST)
         print request.POST
         if form.is_valid():
-            for id in request.POST['table_values']:
+            for index in range(len(request.POST['table_values'])):
                 try:
-                    int(id)
+                    id = int(request.POST['table_values'][index])
                     order = Order()
                     order.no_order = request.POST['no_order']
                     order.client = Client.objects.get(name=request.POST['client'])
                     order.service = Service.objects.get(pk=id)
+                    order.quant = request.POST['table_quants'][index]
                     order.save()
+                    
+                    messages.success(request,
+                        __('Ordem \'%s\' criada com sucesso.' % order.no_order))
                 except ValueError:
                     pass
-            
-            messages.success(request,
-                __('Ordem \'%s\' criada com sucesso.' % order.no_order))
             
             form = AddOrderForm()
             context['class_message'] = 'green'

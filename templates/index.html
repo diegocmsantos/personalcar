@@ -27,20 +27,20 @@
 						<li>{% trans "Bem vindo" %} <strong>{{ request.user.name }}</strong></li>
 						<li>
 							<ul id="user_access">
-								<li class="first"><a href="#">My account</a></li>
-								<li class="last"><a href="{% url logout %}">Log out</a></li>
+								<li class="first"><a href="#">Minha conta</a></li>
+								<li class="last"><a href="{% url logout %}">Sair</a></li>
 							</ul>
 						</li>
-						<li><a class="new_messages" href="#">4 new messages</a></li>
+						<li><a class="new_messages" href="#">0 nova(s) mensagem(ns)</a></li>
 					</ul>
 					<div id="server_details">
 						<dl>
 							<dt>Server time :</dt>
-							<dd>6:45 AM</dd>
+							<dd>{% now "H:i A" %}</dd>
 						</dl>
 						<dl>
-							<dt>Last login ip :</dt>
-							<dd>192.168.0.15</dd>
+							<dt>Último acesso :</dt>
+							<dd>{{ user.date_joined|date:"SHORT_DATETIME_FORMAT" }}</dd>
 						</dl>
 					</div>
 					<!--[if !IE]>start search<![endif]-->
@@ -195,22 +195,18 @@
 		<div id="footer_inner">
 		
 		<dl class="copy">
-			<dt><strong>HyperAdmin</strong> <em>build 26122008</em></dt>
-			<dd>&copy; 2008 Yourcompany.com  All rights reserved.</dd>
+			<dt><strong>Personal Car</strong></dt>
+			<dd>&copy; 2011 <a href='diegomaia.info'>diegomaia.info</a>  All rights reserved.</dd>
 		</dl>
 		
 		<dl class="quick_links">
 			<dt><strong>Quick Links :</strong></dt>
 			<dd>
 				<ul>
-					<li><a href="#">Dashboard </a></li>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">General Settings</a></li>
-					<li><a href="#">Static Pages</a></li>
-					<li><a href="#">Users</a></li>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Marketing</a></li>
-					<li class="last"><a href="#">Log out</a></li>
+					<li><a href="{% url order.views.list_service %}">Serviços </a></li>
+					<li><a href="{% url order.views.list_client %}">Clientes</a></li>
+					<li><a href="{% url order.views.list_order %}">Ordens de Serviço</a></li>
+					<li class="last"><a href="{% url logout %}">Sair</a></li>
 				</ul>
 			</dd>
 		</dl>

@@ -47,7 +47,7 @@
 					if (val.pk == $('#id_service_id').val()) {
 						$('tr.first').after(
 							"<tr id='" + val.pk + "'>" +
-								"<td style='width: 10%;'>" + val.fields.no_service + "</td>" +
+								"<td name='fifth' style='width: 10%;'>" + val.fields.no_service + "</td>" +
 								"<td style='width: 60%;'>" + val.fields.description + "</td>" +
 								"<td style='width: 10%;'><input type='text' id='quant" + val.fields.no_service + "' value='1' size='8'/ onblur='blur_valor(" + val.pk + ");'></td>" +
 								"<td style='width: 10%;'><input type='text' id='value" + val.pk + "' name='" + val.fields.no_service + "' value='" + val.fields.price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
@@ -65,7 +65,13 @@
 		
 		submit = function() {
 			$('form').submit(function () {
+				quants = []
+				for (item in items_sent) {
+					alert($('#' + items_sent[item] + ' td:eq(2) input:eq(0)').val());
+					quants.push($('#' + items_sent[item] + ' td:eq(2) input:eq(0)').val());
+				}
 				$('#id_table').val(items_sent);
+				$('#id_table_quants').val(quants);
 			});
 		}
 		
@@ -83,7 +89,6 @@
 				var quants = $('input[id^="quant"]');
 				$.each(trs, function(key, val) {
 					var quant_key = val.name;
-					//alert(Number(val.value) + ', ' + parseInt($('#quant' + quant_key).val()));
 					total = (total + Number(val.value)) * parseInt($('#quant' + quant_key).val());
 				});
 				result_field.val((total - (total * (desconto / 100))).toFixed(2));
@@ -140,6 +145,7 @@
 							<form action="." method="post" class="search_form general_form">
 								{% csrf_token %}
 								<input type="hidden" id="id_table" name="table_values" />
+								<input type="hidden" id="id_table_quants" name="table_quants" />
 								<!--[if !IE]>start fieldset<![endif]-->
 								<fieldset>
 									<!--[if !IE]>start forms<![endif]-->
