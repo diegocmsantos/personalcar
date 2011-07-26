@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     # project
+    'www',
     'order',
     'uni_form',
     'south',

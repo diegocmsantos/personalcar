@@ -8,11 +8,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('views',
-    ('^$', 'index'),
+    ('^office/$', 'office'),
+    ('^$', 'www'),
     url('^about/$', 'about', name='about'),
     url(r'^login/$', 'make_login', name='login'),
     url(r'^logout/$', logout, name='logout'),
     
     url(r'^order/', include('personalcar.order.urls')),
+    url(r'^/', include('personalcar.www.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

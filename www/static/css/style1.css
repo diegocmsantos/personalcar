@@ -1,0 +1,379 @@
+body{
+background: transparent url('../images/skin1/bg.png') repeat top left;
+color:#777;
+}
+
+#main, #second_header{
+background: #fff;
+}
+
+/************************************************************************
+FEATURED
+*************************************************************************/
+
+#feature_background{
+background:#fff url('../images/skin1/bg_featured.png') no-repeat center 301px;
+}
+
+.bottom_right_rounded_corner, .bottom_left_rounded_corner, .top_right_rounded_corner, .top_left_rounded_corner{
+background:transparent url('http://www.kriesi.at/demos/elementia/water/images/skin1/rounded.png') no-repeat;
+}
+
+.bottom_right_rounded_corner{background-position: bottom right;}
+.bottom_left_rounded_corner{background-position: bottom left;}
+.top_right_rounded_corner{background-position: top right;}
+.top_left_rounded_corner{background-position: top left;}
+
+.slidercontent{
+color:#555;
+}
+
+/*accordiom*/
+.featured{
+background: #f9f9f9 url(../images/skin1/preload.gif) no-repeat center center;
+}
+
+#top .fadeout{
+background: transparent url(../images/skin1/overlay.png) repeat-y right top;
+}
+
+/*fadeslider*/
+
+#top .slidecontrolls span{
+background:transparent url(http://www.kriesi.at/demos/elementia/water/images/skin1/slide_controlls.png) no-repeat top right;
+}
+
+#top .slidecontrolls .active_item, #top .slidecontrolls span:hover{
+background:transparent url(../images/skin1/slide_controlls.png) no-repeat top left;
+}
+
+/*news*/
+.newsselect{
+border:1px solid #e1e1e1;
+background: #f9f9f9;
+}
+
+#top .newsselect .single_item{
+border-top: 1px solid #fff;
+border-bottom: 1px solid #eee;
+}
+
+.newsselect .single_item:hover, .newsselect .active_item{
+background-color: #f1f1f1;
+text-shadow:1px 1px 0 #FFFFFF;
+outline: none;
+}
+
+.newsselect .sliderdate {
+color:#888;
+}
+
+/*------------------------------------------------------------*/
+
+
+#breadcrumb_wrap{
+background: #f5f5f5;
+border-top:1px solid #d1d1d1;
+}
+
+#head, #footer, #footer_bottom{
+color:#fff;
+}
+
+.logo{
+background: transparent url('../images/skin1/logo.png') repeat top left;
+}
+
+.social_bookmarks .rss a{background: transparent url(../images/skin1/rss_16.png) 0 0  no-repeat;}
+.social_bookmarks .facebook a{background: transparent url(../images/skin1/facebook_16.png) 0 0  no-repeat;}
+.social_bookmarks .twitter a{background: transparent url(../images/skin1/twitter_16.png) 0 0  no-repeat;}
+.social_bookmarks .flickr a{background: transparent url(../images/skin1/flickr_16.png) 0 0  no-repeat;}
+.social_bookmarks .skype a{background: transparent url(../images/skin1/skype_16.png) 0 0  no-repeat;}
+
+/*head searchform*/
+
+#head #s{
+background: #fff;
+color:#555;
+}
+
+#head #searchsubmit{
+background: transparent url(../images/skin1/search.png) 2px center  no-repeat;
+}
+
+/*nav*/
+
+#nav a{
+color:#555;
+}
+
+#nav a:hover, #nav .current a, #top #nav li:hover a{
+color:#fff;
+background: #333;
+}
+
+#top #nav ul{
+background: #333;
+}
+
+#top #nav ul a{
+color: #fff;
+}
+
+#top #nav ul a:hover{
+color: #333;
+background: #fff;
+}
+
+
+/*featured*/
+
+.feature_excerpt{
+background: #fff;
+}
+
+.featured a{
+color: #444;
+}
+
+.featured a:hover{
+color: #777;
+}
+/*main content*/
+#info{
+border-bottom:1px solid #ccc;
+color:#555;
+}
+
+.info_noslide{
+border-top:1px solid #ccc;
+}
+
+.show_portfolio, .more-link{
+background: transparent url(../images/skin1/icon_next.png) right 2px  no-repeat;
+}
+
+.show_portfolio:hover{
+text-decoration: none;
+color: #777;
+}
+
+.portfolio_item .item_data{
+border:1px solid #ccc;
+background: #fff;
+}
+
+.category a, .date,  .comments a{
+color:#555;
+}
+.portfolio_item{
+background: transparent url(http://www.kriesi.at/demos/elementia/water/images/skin1/bg_portfolio_item.png) center bottom  no-repeat;
+}
+
+.category{
+background: transparent url(../images/skin1/icon_category.png) left 2px  no-repeat;
+}
+
+.date{
+background: transparent url(../images/skin1/icon_date.png) left 2px  no-repeat;
+}
+
+.post_data .comments{
+background: transparent url(../images/skin1/icon_comments.png) left 2px  no-repeat;
+}
+
+.portfolio_item .date{
+background: transparent url(../images/skin1/icon_date.png) right 2px  no-repeat;
+}
+/*blog*/
+
+.entry img{
+background: #fff;
+border:1px solid #ccc;
+}
+
+.image_border{
+background: transparent url(http://www.kriesi.at/demos/elementia/water/images/skin1/bg_blog_image.png) bottom center  no-repeat;
+}
+
+.latest_work, .show_portfolio, .more-link{
+color:#555;
+}
+
+/*pagination*/
+
+#top .pagination span, #top .pagination a{
+color:#fff;
+background: #555;
+}
+
+#top .pagination a:hover{
+color:#fff;
+background: #777;
+}
+
+#top .pagination .current{
+background: #29ABE2;
+color:#fff;
+}
+
+/*footer*/
+#footer{
+background: transparent url(../images/skin1/bg_footer_shadow.png) top left  repeat-x;
+border-bottom:1px solid #333;
+}
+
+#top .breadcrumb_info{
+background: transparent url(../images/skin1/earth.png) top left no-repeat;
+}
+
+.breadcrumb span{
+background: transparent url(../images/skin1/arrow.png) center left no-repeat;
+}
+
+.breadcrumb a{
+color: #9c9c9c;
+text-shadow:1px 1px 0 #FFFFFF;
+}
+
+#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6, #footer legend, #footer h1 a, #footer h2 a, #footer h3 a, #footer h4 a, #footer h5 a, #footer h6 a {
+color:#fff;
+}
+#footer h2,#footer h3,#footer h4,#footer h6, #footer ul li a{
+border-bottom:1px solid #777;
+}
+
+#footer_bottom{
+border-top:1px solid #777;
+}
+
+#footer li a{
+color:#aaa;
+}
+
+#footer li a:hover{
+color:#fff;
+text-decoration: none;
+}
+
+.box li a,  #footer .box .recentcomments{
+background:transparent url(../images/skin1/bullet2.png) no-repeat scroll 0 12px;
+border-bottom:1px solid #333;
+}
+
+.copyright, .scrollTop{color:#aaa;}
+.scrollTop:hover{color:#fff; font-weight: bold; text-decoration: none;}
+
+.scrollTop{
+background:transparent url(../images/skin1/top.png) no-repeat scroll right 7px;
+}
+
+/*sidebar*/
+
+#sidebar{
+background:transparent url(../images/skin1/bg_sidebar_center.png) repeat-y top left;
+}
+
+#sidebar_top{
+background:transparent url(../images/skin1/bg_sidebar_top.png) no-repeat top left;
+}
+
+#sidebar_bottom{
+background:transparent url(../images/skin1/bg_sidebar_bottom.png) no-repeat bottom left;
+}
+
+#sidebar .box li a{
+color:#777;
+border-bottom:1px solid #CCCCCC;
+background:transparent url(../images/skin1/bullet.png) no-repeat scroll 0 12px;
+}
+
+#sidebar li a:hover{
+color:#555;
+text-decoration: none;
+}
+
+/*Generic*/
+h1, h2, h3, h4, h5, h6, legend, .sliderheading, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+color:#555;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+color:#777;
+text-decoration: none;
+}
+
+h2, h3, h4, h6{
+border-bottom:1px solid #ccc;
+}
+
+
+
+a{
+color:#29abe2;
+}
+
+a:hover{
+color:#6dc5eb;
+}
+
+.lightbox_video, .lightbox_image{
+background:transparent url(../images/skin1/video.png) no-repeat center center;
+}
+
+#top .lightbox_image{
+background:transparent url(../images/skin1/magnify.png) no-repeat center center;
+}
+
+/************************************************************************
+CONTACT FORM
+*************************************************************************/
+
+.valid .text_input, .valid .text_area{border:1px solid #29abe2;} /*#70A41B*/
+.error .text_input, .error .text_area{border:1px solid #FF6600;}
+.ajax_alert .text_input, .ajax_alert .text_area{border:1px solid #ffb628;}
+
+/************************************************************************
+COMMENTS
+*************************************************************************/
+
+.comment_content{
+border:1px solid #ccc;
+}
+
+.author_name a{
+color:#555;
+}
+
+.commentmetadata a{
+color:#aaa;
+}
+
+.says{
+background:transparent url(../images/skin1/say.png) no-repeat scroll 0 0;
+}
+
+.comment-reply-link{
+border-top:1px solid #ccc;
+border-right:1px solid #ccc;
+color:#555;
+}
+
+.text_input, textarea{
+border:1px solid #ccc;
+color:#555;
+}
+
+.button{
+color: #fff;
+background:#29abe2;
+border: none;
+cursor: pointer;
+}
+
+.button:hover{
+color: #fff;
+background:#333;
+}
+
+

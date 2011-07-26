@@ -16,10 +16,15 @@ from forms import LoginForm
 from django.contrib.auth import authenticate, login
 
 @login_required
-def index(request, template="index.html"):
+def office(request, template="index.html"):
         return render_to_response(template,
                                 {},
                                 context_instance=RequestContext(request))
+        
+def www(request, template="index_accordion.html"):
+    return render_to_response(template,
+        {},
+        context_instance=RequestContext(request))
 
 def make_login(request):
     if request.method == 'POST':
