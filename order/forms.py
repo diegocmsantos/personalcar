@@ -18,6 +18,10 @@ class AddClientForm(forms.Form):
     complement = forms.CharField(label=_('Complemento'), max_length=200, required=False)
     neighborhood = forms.CharField(label=_('Bairro'), max_length=200)
     zip = forms.CharField(label=_('CEP'), max_length=15)
+    
+    model = forms.CharField(label=_('Modelo'), max_length=100)
+    license_plate = forms.CharField(label=_('Placa'), max_length=8)
+    year = forms.CharField(label=_('Ano'), max_length=4)
         
 class AddOrderForm(forms.Form):
     service_id = forms.CharField(widget=forms.HiddenInput)

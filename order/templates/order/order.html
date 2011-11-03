@@ -1,37 +1,91 @@
 {% load i18n %}
+{% load orders_extra %}
 
 <html>
 <head>
+    <title>HTML to PDF conversion example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <script src="{{ STATIC_URL }}js/jqGrid/jquery-1.5.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("tr:odd").addClass("odd");
+        });
+    </script>
+    
+    <style type="text/css">
+        table.stats {
+            text-align: center;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif ;
+            font-weight: normal;
+            font-size: 11px;
+            color: #fff;
+            width: 280px;
+            background-color: #666;
+            border: 0px;
+            border-collapse: collapse;
+            border-spacing: 0px;
+        }
 
+        table.stats td {
+            background-color: #CCC;
+            color: #000;
+            padding: 4px;
+            text-align: left;
+            border: 1px #fff solid;
+        }
+
+        table.stats td.hed {
+            background-color: #666;
+            color: #fff;
+            padding: 4px;
+            text-align: left;
+            border-bottom: 2px #fff solid;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <table cellpadding="0" cellspacing="0" width="100%">
-            <tbody>
-                <tr>
-                    <th>{% trans 'Numero Ordem' %}</th>
-                    <th><a href="#" class="asc">{% trans 'Cliente' %}</a></th>
-                    <th><a href="#" class="desc">{% trans 'Servico' %}</a></th>
-                    <th><a href="#">{% trans 'Desconto' %}</a></th>
-                    <th><a href="#">{% trans 'Data' %}</a></th>
-                    <th style="width: 96px;">Actions</th>
-                </tr>
-                
-                    <tr class="first">
-                        <td>{{ order.no_order }}</td>
-                        <td>{{ order.client.name }}</span></td>
-                        <td>{{ order.service.description }}</td>
-                        <td>{{ order.discount }}</td>
-                        <td>{{ order.date }}</td>
-                    </tr>
-                
-            </tbody>
-        </table>
-    </div>
+    
+    <table class="stats" cellspacing="0">
+        <tr>
+            <td class="hed" colspan="4">
+                <p>Cliente: {{ orders.0.client.name }}</p>
+                <p>Telefone: {{ orders.0.client.phone.number }}</p>
+                <p>Carro: {{ orders.0.client.car.model }}</p>
+                <p>Placa: {{ orders.0.client.car.license_plate }}</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <td scope="col">{% trans 'Data' %}</td>
+            <td scope="col">{% trans 'Serviço' %}</td>
+            <td scope="col">{% trans 'Preço' %}</td>
+            <td scope="col">{% trans 'Quantidade' %}</td>
+            <td scope="col">{% trans 'Desconto' %}</td>
+            <td scope="col">{% trans 'Total' %}</td>
+        </tr>
+
+
+        {% for order in orders %}
+            <tr class="first">
+                <th scope="row" id="r100">{{ order.date|date:"SHORT_DATE_FORMAT" }}</th>
+                <td>{{ order.service.description }}</td>
+                <td>{{ order.service.price }}</td>
+                <td>{{ order.quant }}</td>
+                <td>{{ order.discount|default_if_none:"------" }}</td>
+                <td>{{ order.service.price|multiply:order.quant }}</td>
+            </tr>
+        {% endfor %}
+        
+    </table>
+    
     <div id="footerblock">
     {%block pager %}
-        <pdf:pagenumber>
+        Page <pdf:pagenumber>
     {%endblock%}
     </div>
+    
 </body>
 </html>

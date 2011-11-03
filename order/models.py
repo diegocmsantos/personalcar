@@ -37,11 +37,20 @@ class Service(models.Model):
     def __unicode__(self):
         return self.description
     
+class Car(models.Model):
+    model = models.CharField(_('Modelo'), max_length=100)
+    license_plate = models.CharField(_('Placa'), max_length=100)
+    year = models.CharField(_('Ano'), max_length=4)
+    
+    def __unicode__(self):
+        return '%s, %s, %s' % (self.model, self.license_plate, self.year)
+    
 class Client(models.Model):
     name = models.CharField(_('Nome'), max_length=100)
     email = models.EmailField(max_length=75)
     address = models.ForeignKey('Address')
     phone = models.ForeignKey('Phone')
+    car = models.ForeignKey('Car')
     
     class Meta:
         verbose_name = __('Cliente')

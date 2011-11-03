@@ -44,8 +44,16 @@ def add_client(request):
             phone.number = request.POST['phone']
             phone.save()
             
+            # Car
+            car = Car()
+            car.model = request.POST['model']
+            car.license_plate = request.POST['license_plate'].upper()
+            car.year = request.POST['year']
+            car.save()
+            
             # Client
             client = Client()
+            client.car = car
             client.name = request.POST['name']
             client.email = request.POST['email']
             client.address = address
@@ -224,7 +232,7 @@ def list_service_json(request):
     data = serializers.serialize('json', Service.objects.all())
     return HttpResponse(data, mimetype='application/json')
     
-def write_pdf(template_src, context_dict):
+def write_pdf(template_src, context_dict, filename):
     template = get_template(template_src)
     context = Context(context_dict)
     html  = template.render(context)
@@ -232,13 +240,15 @@ def write_pdf(template_src, context_dict):
     pdf = pisa.pisaDocument(StringIO.StringIO(
         html.encode("UTF-8")), result)
     if not pdf.err:
-        return http.HttpResponse(result.getvalue(), \
-             mimetype='application/pdf')
+        response = http.HttpResponse(mimetype='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename=%s.pdf' % filename
+        response.write(result.getvalue())
+        return response
     return http.HttpResponse("Gremlin's ate your pdf! %s" % cgi.escape(html))
 
 def order(request, id):
-    order = get_object_or_404(Order, pk=id)
+    orders = Order.objects.filter(no_order=id)
 
     return write_pdf('order/order.html',{
         'pagesize' : 'A4',
-        'order' : order})
+        'orders' : orders}, 'servico')

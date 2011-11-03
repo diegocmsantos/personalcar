@@ -28,7 +28,7 @@
 													<table cellpadding="0" cellspacing="0" width="100%">
 														<tbody><tr>
 															<th>Nome</th>
-															<th>Email</th>
+															<th>Veículo (ano) / Placa</th>
 															<th>Rua</th>
 															<th>Telefone</th>
 															<th style="width: 96px;">Ordem de serviço</th>
@@ -36,7 +36,7 @@
                                                         {% for client in clients %}
                                                             <tr class="first">
                                                                 <td>{{ client.name }}</td>
-                                                                <td>{{ client.email }}</span></td>
+                                                                <td>{{ client.car.model }} ({{ client.car.year }}) / {{ client.car.license_plate }}</span></td>
                                                                 <td>{{ client.address }}</td>
                                                                 <td>{{ client.phone }}</td>
                                                                 <td style="width: 96px;">
