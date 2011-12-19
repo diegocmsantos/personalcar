@@ -1,17 +1,24 @@
 {% extends "index.html" %}
 {% load i18n %}
+{% load uni_form_tags %}
+{% uni_form form form.helper %}
 
 {% block head_title %}{% trans "Adicionar Ordem de Servico" %}{% endblock %}
 
 {% block head %}
+	
 	<script src="{{ STATIC_URL }}js/jqGrid/jquery-1.5.2.min.js" type="text/javascript"></script>
 	<script src="{{ STATIC_URL }}js/jqGrid/jquery-ui-1.8.13.custom.min.js" type="text/javascript"></script>
 	
 	<script type="text/javascript">
 		var items = [];
 		var items_sent = [];
+		var parts_list = [];
+		var part_ids = [];
 		var services;
 		$(document).ready(function() {
+		
+			$('#id_service').focus();
 		
 			blur_desconto();
 			submit();
@@ -19,6 +26,10 @@
 			$.getJSON('/order/list_service_json/', function(data) {
 				services = data;
 				$.each(data, function(key, val) {
+					//$.each(val.fields.related_parts, function(key, val) {
+					//	alert(val);
+					//});
+					// part_ids = val.fields.related_parts;
 					items.push(val.fields.description);
 				});
 			
@@ -41,21 +52,52 @@
 			
 			$('#id_button_incluir').click(function() {
 				var pk;
+				var part_pks = [];
 			
+				// list services
 				$.each(services, function(key, val) {
 					var id = $('#id_service_id').val();
 					if (val.pk == $('#id_service_id').val()) {
+						
+						// salvando as peças do serviço selecionado
+						part_ids = val.fields.related_parts;
+						//$.each(val.fields.related_parts, function(key, val) {
+							//alert(val);
+						//});
 						$('tr.first').after(
 							"<tr id='" + val.pk + "'>" +
 								"<td name='fifth' style='width: 10%;'>" + val.fields.no_service + "</td>" +
 								"<td style='width: 60%;'>" + val.fields.description + "</td>" +
 								"<td style='width: 10%;'><input type='text' id='quant" + val.fields.no_service + "' value='1' size='8'/ onblur='blur_valor(" + val.pk + ");'></td>" +
-								"<td style='width: 10%;'><input type='text' id='value" + val.pk + "' name='" + val.fields.no_service + "' value='" + val.fields.price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
+								"<td style='width: 10%;'><input type='text' id='value" + val.pk + "' name='" + val.fields.no_service + "' value='" + val.fields.final_price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
 								"<td style='width: 10%;' id='remove_" + val.pk + "'><a class='action4' href='#' onclick='remover(" + val.pk + ");' >&nbsp&nbsp&nbsp&nbsp</a></td>" +
 							"</tr>");
 						pk = val.pk;
 					}
 				});
+				
+				// list parts
+				$.getJSON('/order/list_parts_by_ids/' + part_ids.join('i'), function(data) {
+					$.each(data, function(key, val) {
+						var id = $('#id_service_id').val();
+						// if (val.pk == $('#id_service_id').val()) {
+							$('tr.first').after(
+								"<tr id='" + val.pk + "'>" +
+									"<td name='fifth' style='width: 10%;'>" + "---" + "</td>" +
+									"<td style='width: 60%;'>" + val.fields.description + "</td>" +
+									"<td style='width: 10%;'><input type='text' id='part_quant" +  val.pk + "' value='1' size='8'/ onblur='blur_valor(" + val.pk + ");'></td>" +
+									"<td style='width: 10%;'><input type='text' id='part_value" + val.pk + "' name='" + val.pk + "' value='" + val.fields.final_price + "' size='8' onblur='blur_valor(" + val.pk + ");'/></td>" +
+									"<td style='width: 10%;' id='remove_" + val.pk + "'><a class='action4' href='#' onclick='remover(" + val.pk + ");' >&nbsp&nbsp&nbsp&nbsp</a></td>" +
+								"</tr>");
+							parts_list.push(val.pk);
+						// }
+					});
+				
+				}).success(function() {
+					// success code goes here
+					calcular();
+				});
+				
 				calcular();
 				items_sent.push(pk);
 				blur_valor();
@@ -65,13 +107,30 @@
 		
 		submit = function() {
 			$('form').submit(function () {
-				quants = []
+				
+				quants = [];
 				for (item in items_sent) {
-					alert($('#' + items_sent[item] + ' td:eq(2) input:eq(0)').val());
+					// alert($('#' + items_sent[item] + ' td:eq(2) input:eq(0)').val());
+					// alert('#' + items_sent[item] + ' td:eq(2) input:eq(0)');
 					quants.push($('#' + items_sent[item] + ' td:eq(2) input:eq(0)').val());
 				}
+				
+				part_quants = [];
+				part_values = [];
+				for (index in parts_list) {
+					// alert($('#' + id_part_pks[index] + ' td:eq(2) input:eq(0)').val());
+					// alert('#' + items_sent[item] + ' td:eq(2) input:eq(0)');
+					part_quants.push($('#' + parts_list[index] + ' td:eq(2) input:eq(0)').val());
+					part_values.push($('#' + parts_list[index] + ' td:eq(3) input:eq(0)').val());
+				}
+				
 				$('#id_table').val(items_sent);
 				$('#id_table_quants').val(quants);
+				
+				$('#id_part_pks').val(parts_list);
+				$('#id_part_quants').val(part_quants);
+				$('#id_part_values').val(part_values);
+				
 			});
 		}
 		
@@ -84,13 +143,28 @@
 				return;
 			}
 			var total = 0;
+			var service_total = 0;
+			var part_total = 0;
 			if (total_items > 0) {
 				var trs = $('input[id^="value"]');
 				var quants = $('input[id^="quant"]');
 				$.each(trs, function(key, val) {
-					var quant_key = val.name;
-					total = (total + Number(val.value)) * parseInt($('#quant' + quant_key).val());
+					// alert(parseInt($('#quant' + val.name).val()));
+					// alert(Number(val.value));
+					// alert(Number(val.value) * parseInt($('#quant' + val.name).val()));
+					total = total + (Number(val.value)) * parseInt($('#quant' + val.name).val());
+					// alert(total);
 				});
+				
+				var part_trs = $('input[id^="part_value"]');
+				$.each(part_trs, function(key, val) {
+					// alert(parseInt($('#part_quant' + val.name).val()));
+					// alert(Number(val.value));
+					// alert(Number(val.value) * parseInt($('#part_quant' + val.name).val()));
+					total = total + (Number(val.value)) * parseInt($('#part_quant' + val.name).val());
+					// alert(total);
+				});
+				
 				result_field.val((total - (total * (desconto / 100))).toFixed(2));
 			}
 		}
@@ -146,6 +220,12 @@
 								{% csrf_token %}
 								<input type="hidden" id="id_table" name="table_values" />
 								<input type="hidden" id="id_table_quants" name="table_quants" />
+								
+								<input type="hidden" id="id_part_pks" name="part_pks" />
+								<input type="hidden" id="id_part_quants" name="part_quants" />
+								<input type="hidden" id="id_part_values" name="part_values" />
+								
+								<input type="hidden" id="id_order_discount" name="order_discount" />
 								<!--[if !IE]>start fieldset<![endif]-->
 								<fieldset>
 									<!--[if !IE]>start forms<![endif]-->
@@ -205,7 +285,7 @@
 									<!--[if !IE]>start table menu<![endif]-->
 									<div class="table_menu">
 										<ul class="right">
-											<li><span><span>{% trans "Desconto (%): " %}</span></span><input type="text" id="id_desconto" size='8' /></li>
+											<li><span><span>{% trans "Desconto (%): " %}</span></span><input type="text" id="id_desconto" name="discount" size='8' /></li>
 											<li><span><span>{% trans "Total: " %}</span></span><input type="text" id="id_result" size='8' /></li>
 										</ul>
 									</div>

@@ -590,8 +590,17 @@ h3 {
 	background-image:url(layout/site/forms/yellow_ico.png);
 }
 
+.ui-menu-item {
+    font-size:24px;
+    font-style:italic;
+	background: #f0f0f0;
+	width:300px;
+}
 
-
+.ui-corner-all {
+    font-size:12px;
+    font-style:italic;
+}
 
 /* end forms and messages */
 

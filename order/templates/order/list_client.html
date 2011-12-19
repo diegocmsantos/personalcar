@@ -20,36 +20,82 @@
 										<div class="sct_left">
 											<div class="sct_right">
 												
+												<!--[if !IE]>start forms<![endif]-->
+												<form action="/order/list_client/" class="search_form general_form">
+													<!--[if !IE]>start fieldset<![endif]-->
+													<fieldset>
+														<!--[if !IE]>start forms<![endif]-->
+														<div class="forms">
+														
+															<!--[if !IE]>start row<![endif]-->
+															<div class="row">
+																<label>Nome: </label>
+																<div class="inputs">
+																	<span class="input_wrapper"><input id="id_name_search" name="name_search" class="text" type="text" /></span>
+																</div>																
+															</div>
+															<!--[if !IE]>end row<![endif]-->
+															
+															<!--[if !IE]>start row<![endif]-->
+															<div class="row">
+																<label>Placa: </label>
+																<div class="inputs">
+																	<span class="input_wrapper"><input id="id_plate_search"  name="plate_search" class="text" type="text" /></span>
+																</div>																
+															</div>
+															<!--[if !IE]>end row<![endif]-->
+															
+															<!--[if !IE]>start row<![endif]-->
+														<div class="row">
+															<div class="buttons">
+																<ul>
+																	<li><span class="button send_form_btn"><span><span>Pesquisar</span></span><input name="" type="submit" /></span></li>
+																	<li><span class="button cancel_btn"><span><span>Limpar</span></span><input name="" type="reset" /></span></li>
+																</ul>
+															</div>
+														</div>
+														<!--[if !IE]>end row<![endif]-->
+
+														
+														</div>
+													</fieldset>
+												</form>
+												
 												<form action="#">
 												<fieldset>
 												<!--[if !IE]>start table_wrapper<![endif]-->
 												<div class="table_wrapper">
 													<div class="table_wrapper_inner">
-													<table cellpadding="0" cellspacing="0" width="100%">
-														<tbody><tr>
-															<th>Nome</th>
-															<th>Veículo (ano) / Placa</th>
-															<th>Rua</th>
-															<th>Telefone</th>
-															<th style="width: 96px;">Ordem de serviço</th>
-														</tr>
-                                                        {% for client in clients %}
-                                                            <tr class="first">
-                                                                <td>{{ client.name }}</td>
-                                                                <td>{{ client.car.model }} ({{ client.car.year }}) / {{ client.car.license_plate }}</span></td>
-                                                                <td>{{ client.address }}</td>
-                                                                <td>{{ client.phone }}</td>
-                                                                <td style="width: 96px;">
-                                                                    <div class="actions">
-                                                                        <ul>
-                                                                            <li><a class="action2" href="{% url order.views.add_order client.id %}">1</a></li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
-														
-													</tbody></table>
+													{% if clients %}
+														<table cellpadding="0" cellspacing="0" width="100%">
+															<tbody><tr>
+																<th>Nome</th>
+																<th>Veículo (ano) / Placa</th>
+																<th>Rua</th>
+																<th>Telefone</th>
+																<th style="width: 96px;">Ordem de serviço</th>
+															</tr>
+															{% for client in clients %}
+																<tr class="first">
+																	<td>{{ client.name }}</td>
+																	<td>{{ client.car.model }} ({{ client.car.year }}) / {{ client.car.license_plate }}</span></td>
+																	<td>{{ client.address }}</td>
+																	<td>{{ client.phone }}</td>
+																	<td style="width: 96px;">
+																		<div class="actions">
+																			<ul>
+																				<li><a class="action2" href="{% url order.views.add_order client.id %}">1</a></li>
+																			</ul>
+																		</div>
+																	</td>
+																</tr>
+															{% endfor %}
+															
+															</tbody>
+														</table>
+													{% else %}
+														<h2>{% trans "Nenhum registro encontrado." %}</h2>
+													{% endif %}
 													</div>
 												</div>
 												<!--[if !IE]>end table_wrapper<![endif]-->

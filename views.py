@@ -38,7 +38,7 @@ def make_login(request):
                 if request.POST['next']:
                     return HttpResponseRedirect(request.POST['next'])
                 else:
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect('/office')
                 # return render_to_response('index.html')
             else:
                 # Return a 'disabled account' error message

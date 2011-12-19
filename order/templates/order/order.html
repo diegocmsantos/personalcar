@@ -14,77 +14,270 @@
     </script>
     
     <style type="text/css">
-        table.stats {
-            text-align: center;
-            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif ;
-            font-weight: normal;
-            font-size: 11px;
-            color: #fff;
-            width: 280px;
-            background-color: #666;
-            border: 0px;
-            border-collapse: collapse;
-            border-spacing: 0px;
-        }
+        html, body, form, fieldset, h1, h2, h3, h4, h5, h6, p, pre, blockquote, ul, ol, dl, address {
+            margin:0;
+            padding:0;
+		}
+body {
+	background: #fff url(graphics/bg-body.gif) repeat-x;
+	font:76%/160% "Trebuchet MS",Verdana,Arial,Helvetica,sans-serif;
+	}
+.info {
+	text-align:center;
+	font:bold 1.3em/2.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#66a3d3;
+}
+p.info {
+    text-align: right;
+}
 
-        table.stats td {
-            background-color: #CCC;
-            color: #000;
-            padding: 4px;
-            text-align: left;
-            border: 1px #fff solid;
-        }
+div.personal_logo {
+    height: 50px;
+    width: 50px;
+    float: left;
+}
 
-        table.stats td.hed {
-            background-color: #666;
-            color: #fff;
-            padding: 4px;
-            text-align: left;
-            border-bottom: 2px #fff solid;
-            font-size: 12px;
-            font-weight: bold;
-        }
+div.header {
+    float: right;
+}
+
+p.header {
+    text-align: left;
+    font:bold 1.3em/2.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#66a3d3;
+}
+
+.assinaturas {
+    display: table;
+    font:bold 1.3em/2.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#66a3d3;
+}
+
+.assCliente {
+    float: left;
+}
+
+.assPersonal {
+    margin-left: 35%;
+}
+
+div.footer {
+    text-align: center;
+    font:bold 1.3em/2.5em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#66a3d3;
+}
+
+div.p.footer {
+    
+}
+
+p {
+	text-align:center;
+	}	
+a:link {
+	color:#d42945;
+	text-decoration:none;
+	border-bottom:1px dotted #ffbac8;
+	}	
+a:visited {
+	color:#d42945;
+	border-bottom:none;
+	text-decoration:none;
+	}		
+a:hover,
+a:focus {
+	color:#f03b58;
+	border-bottom:1px solid #f03b58;
+	text-decoration:none;
+	}
+table a,
+table a:link,
+table a:visited {
+	border:none;
+	}							
+	
+img {
+	border:0;
+	margin-top:.5em;
+	}	
+table {
+	width:90%;
+	border-top:1px solid #e5eff8;
+	border-right:1px solid #e5eff8;
+	margin:1em auto;
+		border-collapse:collapse;
+	}
+caption {
+	color: #9ba9b4;
+	font-size:.94em;
+		letter-spacing:.1em;
+		margin:1em 0 0 0;
+		padding:0;
+		caption-side:top;
+		text-align:center;
+	}	
+tr.odd td	{
+	background:#f7fbff
+	}
+tr.odd .column1	{
+	background:#f4f9fe;
+	}	
+.column1	{
+	background:#f9fcfe;
+	}
+td {
+	color:#678197;
+	border-bottom:1px solid #e5eff8;
+	border-left:1px solid #e5eff8;
+	padding:.3em 1em;
+	text-align:center;
+	}				
+th {
+	font-weight:normal;
+	color: #678197;
+	text-align:left;
+	border-bottom: 1px solid #e5eff8;
+	border-left:1px solid #e5eff8;
+	padding:.3em 1em;
+	}							
+thead th {
+	background:#f4f9fe;
+	text-align:center;
+	font:bold 1.2em/2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	color:#66a3d3
+	}	
+tfoot th {
+	text-align:center;
+	background:#f4f9fe;
+	}	
+tfoot th strong {
+	font:bold 1.2em "Century Gothic","Trebuchet MS",Arial,Helvetica,sans-serif;
+	margin:.5em .5em .5em 0;
+	color:#66a3d3;
+		}		
+tfoot th em {
+	color:#f03b58;
+	font-weight: bold;
+	font-size: 1.1em;
+	font-style: normal;
+	}	
     </style>
 </head>
 <body>
     
-    <table class="stats" cellspacing="0">
-        <tr>
-            <td class="hed" colspan="4">
-                <p>Cliente: {{ orders.0.client.name }}</p>
-                <p>Telefone: {{ orders.0.client.phone.number }}</p>
-                <p>Carro: {{ orders.0.client.car.model }}</p>
-                <p>Placa: {{ orders.0.client.car.license_plate }}</p>
-            </td>
-        </tr>
-        
-        <tr>
-            <td scope="col">{% trans 'Data' %}</td>
-            <td scope="col">{% trans 'Serviço' %}</td>
-            <td scope="col">{% trans 'Preço' %}</td>
-            <td scope="col">{% trans 'Quantidade' %}</td>
-            <td scope="col">{% trans 'Desconto' %}</td>
-            <td scope="col">{% trans 'Total' %}</td>
-        </tr>
+    <div class="personal_logo">
+        LOGO
+        LOGO
+        LOGO
+    </div>
+    
+    <div class="header">
+        <p class="header">Cliente: {{ orders.0.client.name }}</p>
+        <p class="header">Telefone: {{ orders.0.client.phone.number }}</p>
+        <p class="header">Carro: {{ orders.0.client.car.model }}</p>
+        <p class="header">Placa: {{ orders.0.client.car.license_plate }}</p>
+        <p class="header">Data: {{ orders.0.date|date:"SHORT_DATE_FORMAT" }}</p>
+    </div>
+    
+    <table summary="Webhosting products overview showing all available packages, what's included and what the monthly cost is with an option to order">
+        <caption>Serviços</caption>
+        <thead>
+            <tr class="odd">
+                <th scope="col" abbr="Home">{% trans 'Serviço' %}</th>
+                <th scope="col" abbr="Home Plus">{% trans 'Preço' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Quantidade' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Desconto' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Total' %}</th>
+            </tr>
+        </thead>
 
-
+        <tbody>
         {% for order in orders %}
-            <tr class="first">
-                <th scope="row" id="r100">{{ order.date|date:"SHORT_DATE_FORMAT" }}</th>
-                <td>{{ order.service.description }}</td>
-                <td>{{ order.service.price }}</td>
+            {% for service in order.services.all %}
+            <tr>
+                <th scope="row" class="column1">{{ service.description }}</th>
+                <td>{{ service.final_price }}</td>
                 <td>{{ order.quant }}</td>
                 <td>{{ order.discount|default_if_none:"------" }}</td>
-                <td>{{ order.service.price|multiply:order.quant }}</td>
+                <td>{{ service.final_price|multiply:order.quant }}</td>
             </tr>
+            {% endfor %}
         {% endfor %}
+        </tbody>
+        
+        <tfoot>	
+            <tr class="odd">
+                <td scope="col">&nbsp</td>
+                <td scope="col">&nbsp</td>
+                <td scope="col">&nbsp</td>
+                <td scope="col">&nbsp</td>
+                <td scope="col"><strong>Total</strong><br /><em>R$ {{ orders.0.total_service }}</em><br /></td>
+            </tr>
+        </tfoot>
         
     </table>
     
-    <div id="footerblock">
-    {%block pager %}
-        Page <pdf:pagenumber>
-    {%endblock%}
+    <div>
+    </div>
+    
+    <table summary="Webhosting products overview showing all available packages, what's included and what the monthly cost is with an option to order">
+        <caption>Peças</caption>
+        <thead>
+            <tr class="odd">
+                <th scope="col" abbr="Business">{% trans 'Descrição' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Quantidade' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Preço' %}</th>
+                <th scope="col" abbr="Business">{% trans 'Total' %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for order in orders %}
+            {% for part in order.related_parts.all %}
+                <tr>
+                    <th scope="row" class="column1">{{ part.part.description }}</th>
+                    <td>{{ part.quant }}</td>
+                    <td>{{ part.price }}</td>
+                    <td>{{ part.price|multiply:part.quant }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+        
+        <tfoot>	
+            <tr class="odd">
+                <td scope="col">&nbsp</td>
+                <td scope="col">&nbsp</td>
+                <td scope="col">&nbsp</td>
+                <td scope="col"><strong>Total</strong><br /><em>R$ {{ orders.0.total_part }}</em><br /></td>
+            </tr>
+        </tfoot>
+            
+    </table>
+    
+    <div>
+        <p class="info">Total: R$ {{ orders.0.total_order }}</p>
+    </div>
+    
+    <div class="assinaturas">
+        <div class="assCliente">
+            <p>Assinatura do cliente</p>
+            <p>__________________________</p>
+        </div>
+        
+        <div class="assPersonal">
+            <p>Personal Car</p>
+            <p>__________________________</p>
+        </div>
+    </div>
+    
+    </br>
+    </br>
+    </br>
+    <div class="footer">
+        <p>Fones: (085) 3252.3061 / 8716.9618</p>
+        <p>Rua Pe. Luiz Figueira - 247 - Aldeota - Fortaleza - Ceará</p>
+        <p>personalcarautos@gmail.com</p>
     </div>
     
 </body>

@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'www',
     'order',
     'uni_form',
-    'south',
+    #'south',
 )
 
 # auth settings

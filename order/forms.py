@@ -53,3 +53,8 @@ class AddServiceForm(forms.ModelForm):
         # helper.form_class = 'awesomeness'
         # helper.form_id = 'form-100'
         return helper
+
+class AddPartForm(forms.ModelForm):
+
+    class Meta:
+        model = Part

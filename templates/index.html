@@ -126,6 +126,7 @@
 										<div class="sct_left">
 											<div class="sct_right">
 												<ul class="sidebar_menu">
+                                                    <li><a href="{% url order.views.list_part %}">Pe&ccedil;as </a></li>
                                                     {% comment %}<li><a href="{% url order.views.add_service %}">{% trans "Cadastrar Servico" %}</a></li>{% endcomment %}
 													<li><a href="{% url order.views.list_service %}">{% trans "Serviço" %}</a></li>
 													{% comment %}<li><a href="{% url order.views.add_client %}">{% trans "Cadastrar Cliente" %}</a></li>{% endcomment %}
@@ -203,6 +204,7 @@
 			<dt><strong>Quick Links :</strong></dt>
 			<dd>
 				<ul>
+                    <li><a href="{% url order.views.list_service %}">Pe&Ccedil;as </a></li>
 					<li><a href="{% url order.views.list_service %}">Serviços </a></li>
 					<li><a href="{% url order.views.list_client %}">Clientes</a></li>
 					<li><a href="{% url order.views.list_order %}">Ordens de Serviço</a></li>

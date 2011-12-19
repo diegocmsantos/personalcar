@@ -20,5 +20,10 @@ urlpatterns = patterns('order',
     (r'^list_service/$', 'views.list_service'),
     (r'^list_service_json/$', 'views.list_service_json'),
     
+    # Part
+    (r'^add_part/$', 'views.add_part'),
+    (r'^list_part/$', 'views.list_part'),
+    (r'^list_parts_by_ids/(?P<list_parts_id>\w+)/$', 'views.list_part_json'),
+    
     (r'^list_service_json/$', 'views.list_service_json'),
 )
