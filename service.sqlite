@@ -1,0 +1,47 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "order_service" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "no_service" integer NOT NULL,
+    "description" varchar(200) NOT NULL,
+    "price" decimal NOT NULL
+);
+INSERT INTO "order_service" VALUES(1,1,'Troca de oleo',10.9);
+INSERT INTO "order_service" VALUES(2,2,'Injeção eletronica',50.99);
+INSERT INTO "order_service" VALUES(3,1,'Troca de óleo completa do motor',85);
+INSERT INTO "order_service" VALUES(4,2,'Troca de óleo caixa de marcha',36);
+INSERT INTO "order_service" VALUES(5,3,'Troca de óleo diferencial',40);
+INSERT INTO "order_service" VALUES(6,4,'Aditivos do arrefecimento',28);
+INSERT INTO "order_service" VALUES(7,5,'Limpeza do arrefecimento',40);
+INSERT INTO "order_service" VALUES(8,6,'Revisão suspensão dianteira',100);
+INSERT INTO "order_service" VALUES(9,7,'Revisão suspensão traseira',80);
+INSERT INTO "order_service" VALUES(10,8,'Remoção e montagem caixa de marcha',250);
+INSERT INTO "order_service" VALUES(11,9,'Remoção e montagem kit embreagem',180);
+INSERT INTO "order_service" VALUES(12,10,'Remoção e montagem bomba dagua',80);
+INSERT INTO "order_service" VALUES(13,11,'Remoção e montagem bomba de combustível',100);
+INSERT INTO "order_service" VALUES(14,12,'Troca amortecedores dianteiros',80);
+INSERT INTO "order_service" VALUES(15,13,'Troca amortecedores traseiros',80);
+INSERT INTO "order_service" VALUES(16,14,'Troca pastilhas de freio',50);
+INSERT INTO "order_service" VALUES(17,15,'Troca discos de freio',50);
+INSERT INTO "order_service" VALUES(18,16,'Troca buchas da sapata',40);
+INSERT INTO "order_service" VALUES(19,17,'Troca terminais de direção',40);
+INSERT INTO "order_service" VALUES(20,18,'Troca braços de direção',40);
+INSERT INTO "order_service" VALUES(21,19,'Recuperação e montagem direção hidráulica',360);
+INSERT INTO "order_service" VALUES(22,20,'Regulagem e recuperação caixa de direção',100);
+INSERT INTO "order_service" VALUES(23,21,'Revisão e limpeza sistema hidráulico',120);
+INSERT INTO "order_service" VALUES(24,22,'Revisão e limpeza bicos injetores',80);
+INSERT INTO "order_service" VALUES(25,23,'Descarbonização motor',80);
+INSERT INTO "order_service" VALUES(26,24,'Limpeza do TBI',80);
+INSERT INTO "order_service" VALUES(27,25,'Troca Jogo Vela e Cabos vela',60);
+INSERT INTO "order_service" VALUES(28,26,'Troca rolamento dianteiro',80);
+INSERT INTO "order_service" VALUES(29,27,'Troca rolamento traseiro',60);
+INSERT INTO "order_service" VALUES(30,28,'Troca bojo traseiro',40);
+INSERT INTO "order_service" VALUES(31,29,'Recuperação e colocação protetor motor',70);
+INSERT INTO "order_service" VALUES(32,30,'Troca junta tampa da tampa de válvulas',50);
+INSERT INTO "order_service" VALUES(33,31,'Recuperação do motor de arranque',100);
+INSERT INTO "order_service" VALUES(34,32,'Recuperação cabeçote superior',350);
+INSERT INTO "order_service" VALUES(35,33,'Retífica parte inferior motor',450);
+INSERT INTO "order_service" VALUES(36,34,'Troca correia dentada',80);
+INSERT INTO "order_service" VALUES(37,35,'Troca correia dos acessórios',60);
+INSERT INTO "order_service" VALUES(38,36,'Bomba dagua',110);
+COMMIT;
