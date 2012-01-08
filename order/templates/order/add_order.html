@@ -82,7 +82,7 @@
 						var id = $('#id_service_id').val();
 						// if (val.pk == $('#id_service_id').val()) {
 							$('tr.first').after(
-								"<tr id='" + val.pk + "'>" +
+								"<tr id='part" + val.pk + "'>" +
 									"<td name='fifth' style='width: 10%;'>" + "---" + "</td>" +
 									"<td style='width: 60%;'>" + val.fields.description + "</td>" +
 									"<td style='width: 10%;'><input type='text' id='part_quant" +  val.pk + "' value='1' size='8'/ onblur='blur_valor(" + val.pk + ");'></td>" +
@@ -118,10 +118,8 @@
 				part_quants = [];
 				part_values = [];
 				for (index in parts_list) {
-					// alert($('#' + id_part_pks[index] + ' td:eq(2) input:eq(0)').val());
-					// alert('#' + items_sent[item] + ' td:eq(2) input:eq(0)');
-					part_quants.push($('#' + parts_list[index] + ' td:eq(2) input:eq(0)').val());
-					part_values.push($('#' + parts_list[index] + ' td:eq(3) input:eq(0)').val());
+					part_quants.push($('#part' + parts_list[index] + ' td:eq(2) input:eq(0)').val());
+					part_values.push($('#part' + parts_list[index] + ' td:eq(3) input:eq(0)').val());
 				}
 				
 				$('#id_table').val(items_sent);

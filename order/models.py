@@ -105,8 +105,8 @@ class Car(models.Model):
     
 class Client(models.Model):
     name = models.CharField(_('Nome'), max_length=100)
-    email = models.EmailField(max_length=75)
-    address = models.ForeignKey('Address')
+    email = models.EmailField(max_length=75, null=True, blank=True)
+    address = models.ForeignKey('Address', null=True, blank=True)
     phone = models.ForeignKey('Phone')
     car = models.ForeignKey('Car')
     

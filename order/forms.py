@@ -12,12 +12,12 @@ from models import *
 class AddClientForm(forms.Form):
     textClass = forms.TextInput(attrs={'class':'text'})
     name = forms.CharField(label=_('Nome'), max_length=100)
-    email = forms.EmailField(max_length=75)
+    email = forms.EmailField(max_length=75, required=False)
     phone = forms.CharField(label=_('Telefone'), max_length=15)
-    street = forms.CharField(label=_('Rua'), max_length=200)
+    street = forms.CharField(label=_('Rua'), max_length=200, required=False)
     complement = forms.CharField(label=_('Complemento'), max_length=200, required=False)
-    neighborhood = forms.CharField(label=_('Bairro'), max_length=200)
-    zip = forms.CharField(label=_('CEP'), max_length=15)
+    neighborhood = forms.CharField(label=_('Bairro'), max_length=200, required=False)
+    zip = forms.CharField(label=_('CEP'), max_length=15, required=False)
     
     model = forms.CharField(label=_('Modelo'), max_length=100)
     license_plate = forms.CharField(label=_('Placa'), max_length=8)

@@ -101,6 +101,7 @@ def list_client(request):
 def add_order(request, client_id='0'):
     context = {}
     if request.POST:
+        print request.POST
         form = AddOrderForm(request.POST)
         if form.is_valid():
             part_list = []
